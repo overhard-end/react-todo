@@ -1,0 +1,24 @@
+.todo-list-item {
+  overflow-x: hidden;
+  width: 100%;
+}
+.todo-list-item-text {
+  width: 300px;
+  text-wrap: "wrap";
+  word-wrap: break-word;
+}
+
+.todo-list-item-btn {
+  height: 35px;
+  padding: 6px;
+}
+.item-btn-icon {
+  width: 4px;
+}
+.done {
+  text-decoration: line-through;
+}
+.important {
+  color: tomato;
+  font-weight: 700;
+}
