@@ -1,6 +1,12 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 export default class TodoAdd extends React.Component {
+  static defaultProps = {
+    todoAddHandler: () => "",
+  };
+  static propTypes = {
+    todoAddHandler: PropTypes.func,
+  };
   state = {
     text: "",
   };

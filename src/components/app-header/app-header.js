@@ -1,6 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default class AppHeader extends React.Component {
+  static defaultProps = {
+    done: 0,
+    left: 0,
+  };
+  static propTypes = {
+    done: PropTypes.number,
+    left: PropTypes.number,
+  };
   render() {
     const { done, left } = this.props;
     return (

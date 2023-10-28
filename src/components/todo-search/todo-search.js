@@ -1,6 +1,12 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 export default class TodoSearch extends React.Component {
+  static defaultProps = {
+    todoSearchHandler: () => "",
+  };
+  static propTypes = {
+    todoSearchHandler: PropTypes.func,
+  };
   state = {
     inputText: "",
   };
@@ -12,7 +18,7 @@ export default class TodoSearch extends React.Component {
     return (
       <input
         value={this.state.inputText}
-        onChange={(e) => this.handleOnChange(e)}
+        onChange={(e) => this.searchInputHandler(e)}
         placeholder="type to search"
         type="text"
         className="form-control search-input"

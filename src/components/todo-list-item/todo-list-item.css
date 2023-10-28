@@ -1,9 +1,9 @@
 .todo-list-item {
-  overflow-x: hidden;
   width: 100%;
+  cursor: pointer;
 }
 .todo-list-item-text {
-  width: 300px;
+  width: 270px;
   text-wrap: "wrap";
   word-wrap: break-word;
 }

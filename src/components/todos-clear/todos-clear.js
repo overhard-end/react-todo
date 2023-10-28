@@ -1,5 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 export default class TodosClear extends React.Component {
+  static defaultProps = {
+    todosClearHandler: () => "",
+  };
+  static propTypes = {
+    todosClearHandler: PropTypes.func,
+  };
   render() {
     return (
       <div className="d-flex justify-content-end pt-3">
