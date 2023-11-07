@@ -11,13 +11,18 @@
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
+  "parser": "@babel/eslint-parser",
   "plugins": ["react", "prettier", "import"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
   },
 
   "rules": {
@@ -38,6 +43,7 @@
     ]
   },
   "settings": {
+    "react": { "version": "detect" },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],

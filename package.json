@@ -15,7 +15,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix --color",
-    "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+    "format": "prettier --write  \"./src/**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,7 +34,8 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/preset-react": "^7.22.15",
     "eslint": "^8.53.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",
