@@ -22,6 +22,7 @@ export default class TodoAdd extends React.Component {
     return (
       <form onSubmit={this.submitHandler} className="input-group mt-3">
         <input
+          id="todo-add"
           onChange={this.inputHandler}
           type="text"
           value={this.state.text}
