@@ -1,2 +1,3 @@
-import TodosClear from "./todos-clear";
+import TodosClear from './todos-clear';
+
 export default TodosClear;

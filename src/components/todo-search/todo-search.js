@@ -1,23 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+
 export default class TodoSearch extends React.Component {
   static defaultProps = {
-    todoSearchHandler: () => "",
+    todoSearchHandler: () => '',
   };
+
   static propTypes = {
     todoSearchHandler: PropTypes.func,
   };
+
   state = {
-    inputText: "",
+    inputText: '',
   };
+
   searchInputHandler = (e) => {
     this.setState({ inputText: e.target.value });
     this.props.todoSearchHandler(e.target.value);
   };
+
   render() {
+    const { inputText } = this.state;
     return (
       <input
-        value={this.state.inputText}
+        value={inputText}
         onChange={(e) => this.searchInputHandler(e)}
         placeholder="type to search"
         type="text"
