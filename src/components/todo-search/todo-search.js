@@ -23,6 +23,7 @@ export default class TodoSearch extends React.Component {
     const { inputText } = this.state;
     return (
       <input
+        name="todos-search"
         value={inputText}
         onChange={(e) => this.searchInputHandler(e)}
         placeholder="type to search"
