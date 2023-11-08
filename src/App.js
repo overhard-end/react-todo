@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TodoList from './components/todo-list/todo-list';
-import './app.css';
+import './App.css';
 import TodoSearch from './components/todo-search';
 import TodoAdd from './components/todo-add';
 import TodoFilter from './components/todo-filter';
