@@ -15,22 +15,20 @@ export default class TodoFilter extends React.Component {
     this.setState({ active: btn });
     this.props.todoFilterHandler(btn);
   }
-
+  buttonsRender() {
+    return this.buttons.map((btn) => (
+      <li key={btn}>
+        <button
+          type="button"
+          onClick={() => this.buttonClickHandler(btn)}
+          className={btn === this.state.active ? 'selected' : ''}
+        >
+          {btn}
+        </button>
+      </li>
+    ));
+  }
   render() {
-    const { active } = this.state;
-    return (
-      <div>
-        {this.buttons.map((btn) => (
-          <button
-            type="button"
-            key={btn}
-            onClick={() => this.buttonClickHandler(btn)}
-            className={btn === active ? 'btn btn-primary' : 'btn btn-outline-secondary'}
-          >
-            {btn}
-          </button>
-        ))}
-      </div>
-    );
+    return <ul className="filters">{this.buttonsRender()}</ul>;
   }
 }

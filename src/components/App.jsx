@@ -1,21 +1,19 @@
 import React from 'react';
+import './app.sass';
 
-import TodoList from './components/todo-list/todo-list';
-import './App.css';
-import TodoSearch from './components/todo-search';
-import TodoAdd from './components/todo-add';
-import TodoFilter from './components/todo-filter';
-import AppHeader from './components/app-header';
-import TodosClear from './components/todos-clear/todos-clear';
+import TodoAdd from './todoAdd';
+import TodoFilter from './todoFilter';
+import TodosClear from './todosClear';
+import TodosStatus from './todosStatus';
+import TodoList from './todoList';
 
 export default class App extends React.Component {
   state = {
     todos: [],
-    textToSearch: null,
     paramToFilter: null,
   };
 
-  getTodoInfo = () => {
+  getTodosStatus = () => {
     const obj = { done: 0, left: 0 };
     this.state.todos.forEach((todo) => (todo.done ? obj.done++ : obj.left++));
     return obj;
@@ -39,19 +37,28 @@ export default class App extends React.Component {
     return todos;
   };
 
-  todoItemToggle = (id, type) => {
-    this.setState((state) => ({
-      todos: state.todos.map((item) => (item.id === id ? { ...item, [type]: !item[type] } : item)),
-    }));
+  todoActionsHandler = (id, type, data) => {
+    this.setState(({ todos }) => {
+      if (type === 'delete') return { todos: todos.filter((item) => item.id != id) };
+      return {
+        todos: todos.map((item) => {
+          if (item.id === id) {
+            if (type === 'edit' && data) return { ...item, title: data, edit: false };
+            return { ...item, [type]: !item[type] };
+          } else return item;
+        }),
+      };
+    });
   };
-
   todoAddHandler = (tittle) => {
+    if (!tittle) return;
     const newTodo = {
       id: Number(String(Math.random()).split('.')[1]),
       title: tittle,
       date: Date.now(),
       done: false,
       important: false,
+      edit: false,
     };
     this.setState((state) => ({ todos: [...state.todos, newTodo] }));
   };
@@ -61,32 +68,25 @@ export default class App extends React.Component {
       todos: state.todos.filter((todo) => !todo.done),
     }));
 
-  todoSearchHandler = (text) => this.setState({ textToSearch: text });
-
   todoFilterHandler = (param) => this.setState({ paramToFilter: param });
-
-  todoDeleteHandler = (id, { todos } = this.state) =>
-    this.setState({
-      todos: todos.filter((item) => item.id !== id),
-    });
 
   render() {
     return (
-      <div className="container-sm px-auto pt-5 app-container">
-        <AppHeader {...this.getTodoInfo()} />
+      <section className="todoapp">
+        <header className="header">
+          <h1>todos</h1>
+          <TodoAdd todoAddHandler={this.todoAddHandler} />
+        </header>
 
-        <div className="input-group">
-          <TodoSearch todoSearchHandler={this.todoSearchHandler} />
+        <ul className="todo-list">
+          <TodoList todoActionsHandler={this.todoActionsHandler} todos={this.todoToShow()} />
+        </ul>
+        <footer className="footer">
+          <TodosStatus {...this.getTodosStatus()} />
           <TodoFilter todoFilterHandler={this.todoFilterHandler} />
-        </div>
-        <TodosClear todosClearHandler={this.todoDoneItemsClearHandler} />
-        <TodoList
-          todoDeleteHandler={this.todoDeleteHandler}
-          todoItemToggle={this.todoItemToggle}
-          todos={this.todoToShow()}
-        />
-        <TodoAdd todoAddHandler={this.todoAddHandler} />
-      </div>
+          <TodosClear todosClearHandler={this.todoDoneItemsClearHandler} />
+        </footer>
+      </section>
     );
   }
 }

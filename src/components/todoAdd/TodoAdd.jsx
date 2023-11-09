@@ -20,18 +20,15 @@ export default class TodoAdd extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitHandler} className="input-group mt-3">
+      <form onSubmit={this.submitHandler}>
         <input
-          id="todo-add"
+          id="new-todo"
           onChange={this.inputHandler}
           type="text"
           value={this.state.text}
           placeholder="What needs to be done ?"
-          className="form-control"
+          className="new-todo"
         />
-        <button type="submit" className="btn btn-outline-secondary">
-          Add
-        </button>
       </form>
     );
   }
